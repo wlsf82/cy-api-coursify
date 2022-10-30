@@ -1,0 +1,22 @@
+{
+  "name": "cy-api-coursify",
+  "version": "1.0.0",
+  "description": "Sample project to demonstrate the usage of the cypress-plugin-api library.",
+  "main": "cypress.config.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "test": "cypress run"
+  },
+  "keywords": [
+    "Cypress.io",
+    "cypress-plugin-api",
+    "API Testing",
+    "Talking About Testing"
+  ],
+  "author": "Walmyr Filho <wlsf82@gmail.com> (https://walmyr.dev/)",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.11.0",
+    "cypress-plugin-api": "^1.7.1"
+  }
+}
