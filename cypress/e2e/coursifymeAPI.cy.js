@@ -48,3 +48,19 @@ describe('Coursify.me API', { env: { hideCredentials: true } }, () => {
     })
   })
 })
+
+describe('Coursify.me API', () => {
+  context('Do not hide "sensitive" data', () => {
+    it('GET /courses - failure scenario', () => {
+      cy.api({
+        method: 'GET',
+        url: `${API_URL}/courses`,
+        headers: { Authorization: Cypress.env('LEAK_API_KEY') },
+        failOnStatusCode: false,
+      }).should(({ status, body }) => {
+        expect(status).not.to.equal(200)
+        expect(body.errors).not.to.be.undefined
+      })
+    })
+  })
+})
