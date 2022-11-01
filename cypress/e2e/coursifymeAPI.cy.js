@@ -11,11 +11,21 @@ describe('Coursify.me API', { env: { hideCredentials: true } }, () => {
       const { data } = body
       expect(status).to.equal(200)
       expect(data.length).to.equal(7)
+
+      // Do not do this
+      cy.get('[data-cy="status"]').should('contain', '200 (OK)')
+
       data.forEach(item => {
         const { currency_symbol, is_active, is_archived } = item
         expect(currency_symbol).to.eq('R$')
         expect(is_active).to.eq(true)
         expect(is_archived).to.eq(false)
+
+        // Do not do this
+        cy.get('[data-cy="responseBody"]')
+          .should('contain', 'R$')
+          .and('contain', '"is_active": true')
+          .and('contain', '"is_archived": false')
       })
     })
   })
@@ -31,6 +41,12 @@ describe('Coursify.me API', { env: { hideCredentials: true } }, () => {
         expect(status).to.equal(200)
         expect(data.name).to.eq(Cypress.env('FREE_COURSE_NAME'))
         expect(data.price_type).to.eq('free')
+
+        // Do not do this
+        cy.get('[data-cy="status"]').should('contain', '200 (OK)')
+        cy.get('[data-cy="responseBody"]')
+          .should('contain', Cypress.env('FREE_COURSE_NAME'))
+          .and('contain', 'free')
       })
     })
 
@@ -44,6 +60,12 @@ describe('Coursify.me API', { env: { hideCredentials: true } }, () => {
         expect(status).to.equal(200)
         expect(data.name).to.eq(Cypress.env('PAID_COURSE_NAME'))
         expect(data.price_type).to.eq('paid')
+
+        // Do not do this
+        cy.get('[data-cy="status"]').should('contain', '200 (OK)')
+        cy.get('[data-cy="responseBody"]')
+          .should('contain', Cypress.env('PAID_COURSE_ID'))
+          .and('contain', 'paid')
       })
     })
   })
