@@ -62,5 +62,21 @@ describe('Coursify.me API', () => {
         expect(body.errors).not.to.be.undefined
       })
     })
+
+    it('POST /courses - failure scenario - 404', () => {
+      cy.api({
+        method: 'POST',
+        url: `${API_URL}/courses`,
+        headers: { Authorization: Cypress.env('LEAK_API_KEY') },
+        body: {
+          foo: 'foo',
+          bar: 'bar'
+        },
+        failOnStatusCode: false,
+      }).should(({ status, body }) => {
+        expect(status).to.equal(404)
+        expect(body.errors.detail).not.equal('Not Found"')
+      })
+    })
   })
 })
