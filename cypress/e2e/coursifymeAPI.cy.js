@@ -75,7 +75,7 @@ describe('Coursify.me API', () => {
         failOnStatusCode: false,
       }).should(({ status, body }) => {
         expect(status).to.equal(404)
-        expect(body.errors.detail).not.equal('Not Found"')
+        expect(body.errors.detail).be.equal('Not Found')
       })
     })
   })
