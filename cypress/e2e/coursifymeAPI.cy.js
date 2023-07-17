@@ -50,7 +50,7 @@ describe('Coursify.me API', { env: { hideCredentials: true } }, () => {
 })
 
 describe('Coursify.me API', () => {
-  context('Do not hide "sensitive" data', () => {
+  context('Oops, leaking data', () => {
     it('GET /courses - failure scenario', () => {
       cy.api({
         method: 'GET',
