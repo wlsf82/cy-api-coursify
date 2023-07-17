@@ -10,7 +10,7 @@ describe('Coursify.me API', { env: { hideCredentials: true } }, () => {
     }).should(({ status, body }) => {
       const { data } = body
       expect(status).to.equal(200)
-      expect(data.length).to.equal(7)
+      expect(data.length).to.equal(8)
       data.forEach(item => {
         const { currency_symbol, is_active, is_archived } = item
         expect(currency_symbol).to.eq('R$')
