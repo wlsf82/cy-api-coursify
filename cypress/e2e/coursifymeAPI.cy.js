@@ -12,10 +12,14 @@ describe('Coursify.me API', { env: { hideCredentials: true } }, () => {
       expect(status).to.equal(200)
       expect(data.length).to.equal(8)
       data.forEach(item => {
-        const { currency_symbol, is_active, is_archived } = item
+        const { currency_symbol, is_active, is_archived, name } = item
         expect(currency_symbol).to.eq('R$')
-        expect(is_active).to.eq(true)
         expect(is_archived).to.eq(false)
+        if (name !== 'Boas práticas com Cypress') {
+          expect(is_active).to.eq(true)
+        } else {
+          expect(is_active).to.eq(false)
+        }
       })
     })
   })
